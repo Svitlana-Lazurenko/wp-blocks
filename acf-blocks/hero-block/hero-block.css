@@ -1,0 +1,30 @@
+.hero {
+  background-color: rgb(196, 252, 255);
+  color: rgb(49, 47, 47);
+  padding: 50px 0;
+}
+
+.content {
+  display: flex;
+}
+
+.column-1 {
+  margin-top: auto;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.btn-1 {
+  background-color: rgb(214, 180, 41);
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn-2 {
+  background-color: rgb(128, 226, 43);
+  padding: 5px;
+  border-radius: 5px;
+}

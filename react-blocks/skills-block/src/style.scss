@@ -1,0 +1,140 @@
+$block: "skills-block";
+
+.#{$block} {
+  // ===================EDITOR===========================
+  .wp-admin & {
+    padding: 20px;
+    background-color: #ede1a2;
+  }
+
+  &__help {
+    font-size: 12px;
+    color: #555;
+    margin-top: 30px;
+  }
+
+  // Skills
+  .block-editor-inner-blocks {
+    > .block-editor-block-list__layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 60px;
+
+      // Skill
+      > .wp-block-group {
+        width: calc(50% - 10px);
+        margin: unset; // ---------------------Reset of styles
+        border-radius: 15px;
+        border: 1px solid #dcdfe5;
+        background: #fff;
+        padding: 25px;
+
+        .wp-block-group__inner-container {
+          background: #13a995;
+        }
+
+        // Wrapper for figure
+        .wp-block:first-child {
+          margin: unset; // --------------------Reset of styles
+
+          > figure {
+            margin: unset; // --------------------Reset of styles
+          }
+        }
+
+        // Name of skill
+        h5 {
+          margin: unset; // -------------------Reset of styles
+          color: #ceb007;
+          font-size: 18px;
+          line-height: 24px;
+          font-style: normal;
+          font-weight: 500;
+          text-align: center;
+        }
+
+        // Description of skill
+        p {
+          margin: unset; // ------------------Reset of styles
+          text-align: center;
+        }
+      }
+
+      // Button-appender
+      .block-list-appender {
+        background-color: #92eb7c;
+      }
+    }
+  }
+
+  // ===========================FRONTEND===========================
+  &__block {
+    padding: 96px 0;
+    background-color: #ede1a2;
+
+    .#{$block}__title {
+      margin-bottom: 8px;
+      color: #2fd52f;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 120%;
+      margin-top: unset;
+    }
+
+    .#{$block}__description {
+      color: #37bdd2;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 34px;
+      margin-top: 0;
+      margin-bottom: 50px;
+    }
+
+    // Skills
+    .#{$block}__skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+
+      // Skill
+      .#{$block}__skill {
+        width: calc(50% - 10px);
+        margin: unset;
+        border-radius: 15px;
+        border: 1px solid #dcdfe5;
+        background: #fff;
+        padding: 25px;
+
+        //Inner-container of skill
+        & > div {
+          background: #13a995;
+        }
+
+        // Wrapper for img
+        .#{$block}__skill-image {
+          margin: unset; // ------------------Reset of styles
+        }
+
+        // Name of skill
+        .#{$block}__skill-title {
+          margin: unset;
+          color: #6b7280;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+          text-align: center;
+        }
+
+        // Description of skill
+        .#{$block}__skill-description {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
