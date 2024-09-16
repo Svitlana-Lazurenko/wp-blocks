@@ -29,6 +29,7 @@
   },
   "browserslist": [
     "> 0.2%",
-    "not dead"
+    "not dead",
+    "fully supports es6-module"
   ]
 }
