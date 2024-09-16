@@ -11,20 +11,20 @@ import { __ } from "@wordpress/i18n";
 import "./style.scss"; // Styles
 
 // Block name
-const blockName = "skills-block";
+const BLOCK_NAME = "skills-block";
 
 // Template of skill
-const SKILL_TEMPLATE = [
+const skillTemplate = [
   [
     "core/image",
     {
-      className: `${blockName}__skill-image`,
+      className: `${BLOCK_NAME}__skill-image`,
     },
   ],
   [
     "core/heading",
     {
-      className: `${blockName}__skill-title`,
+      className: `${BLOCK_NAME}__skill-title`,
       placeholder: __("Skill name", "text-domain"),
       level: 5,
     },
@@ -32,11 +32,28 @@ const SKILL_TEMPLATE = [
   [
     "core/paragraph",
     {
-      className: `${blockName}__skill-description`,
+      className: `${BLOCK_NAME}__skill-description`,
       placeholder: __("Skill description", "text-domain"),
     },
   ],
 ];
+
+// Template of image
+const getImageTemplate = (setAttributes) => (
+  <MediaUploadCheck>
+    <MediaUpload
+      onSelect={(media) => {
+        setAttributes({ imageUrl: media.url, imageAlt: media.alt });
+      }}
+      allowedTypes={["image"]}
+      render={({ open }) => (
+        <Button onClick={open} variant="primary">
+          {__("Upload Image", "text-domain")}
+        </Button>
+      )}
+    />
+  </MediaUploadCheck>
+);
 
 // Custom Appender
 const CustomAppender = ({ clientId }) => {
@@ -50,9 +67,9 @@ const CustomAppender = ({ clientId }) => {
     const groupBlock = createBlock(
       "core/group",
       {
-        className: `${blockName}__skill`,
+        className: `${BLOCK_NAME}__skill`,
       },
-      SKILL_TEMPLATE.map(([blockName, blockAttributes]) =>
+      skillTemplate.map(([blockName, blockAttributes]) =>
         createBlock(blockName, blockAttributes)
       )
     );
@@ -67,7 +84,7 @@ const CustomAppender = ({ clientId }) => {
 };
 
 // Register block
-registerBlockType(`my-theme/${blockName}`, {
+registerBlockType(`my-theme/${BLOCK_NAME}`, {
   title: __("Skills Block", "text-domain"),
   category: "theme",
   icon: "admin-tools",
@@ -97,31 +114,19 @@ registerBlockType(`my-theme/${blockName}`, {
     const { imageUrl, imageAlt, heading, description } = attributes;
 
     return (
-      <div className={blockName}>
+      <div className={BLOCK_NAME}>
         <div>
-          <p className={`${blockName}__help`}>
+          <p className={`${BLOCK_NAME}__help`}>
             {__("Provide image for skills.", "text-domain")}
           </p>
           {imageUrl ? (
             <img src={imageUrl} alt={imageAlt} />
           ) : (
-            <MediaUploadCheck>
-              <MediaUpload
-                onSelect={(media) => {
-                  setAttributes({ imageUrl: media.url, imageAlt: media.alt });
-                }}
-                allowedTypes={["image"]}
-                render={({ open }) => (
-                  <Button onClick={open} variant="primary">
-                    {__("Upload Image", "text-domain")}
-                  </Button>
-                )}
-              />
-            </MediaUploadCheck>
+            getImageTemplate(setAttributes)
           )}
         </div>
         <div>
-          <p className={`${blockName}__help`}>
+          <p className={`${BLOCK_NAME}__help`}>
             {__("Enter title for skills.", "text-domain")}
           </p>
           <RichText
@@ -129,11 +134,11 @@ registerBlockType(`my-theme/${blockName}`, {
             placeholder={__("Your text here...", "text-domain")}
             value={heading}
             onChange={(value) => setAttributes({ heading: value })}
-            className={`${blockName}__title`}
+            className={`${BLOCK_NAME}__title`}
           />
         </div>
         <div>
-          <p className={`${blockName}__help`}>
+          <p className={`${BLOCK_NAME}__help`}>
             {__("Enter description for skills.", "text-domain")}
           </p>
           <RichText
@@ -141,11 +146,11 @@ registerBlockType(`my-theme/${blockName}`, {
             placeholder={__("Your text here...", "text-domain")}
             value={description}
             onChange={(value) => setAttributes({ description: value })}
-            className={`${blockName}__description`}
+            className={`${BLOCK_NAME}__description`}
           />
         </div>
-        <div className={`${blockName}__skills`}>
-          <p className={`${blockName}__help`}>
+        <div className={`${BLOCK_NAME}__skills`}>
+          <p className={`${BLOCK_NAME}__help`}>
             {__(
               "Enter information for every skill. Image of skill must be format 1:1.",
               "text-domain"
@@ -165,20 +170,20 @@ registerBlockType(`my-theme/${blockName}`, {
     const { imageUrl, imageAlt, heading, description } = attributes;
 
     return (
-      <section className={`${blockName}__block`}>
+      <section className={`${BLOCK_NAME}__block`}>
         <div className={"container"}>
           {imageUrl && <img src={imageUrl} alt={imageAlt} />}
           <RichText.Content
             tagName="h3"
             value={heading}
-            className={`${blockName}__title`}
+            className={`${BLOCK_NAME}__title`}
           />
           <RichText.Content
             tagName="p"
             value={description}
-            className={`${blockName}__description`}
+            className={`${BLOCK_NAME}__description`}
           />
-          <div className={`${blockName}__skills`}>
+          <div className={`${BLOCK_NAME}__skills`}>
             <InnerBlocks.Content />
           </div>
         </div>
